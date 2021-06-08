@@ -73,11 +73,16 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="categoryId">Product Category</label>
-            <div class="col-md-4">
-                <input id="categoryId" name="categoryId" placeholder="Category Id"
-                       class="form-control input-md" required="" type="text">
-            </div>
+            <select name="categoryId">
+                <c:forEach items="${cate}" var="category">
+                    <option value="${category.id}" >${category.name}</option>
+                </c:forEach>
+            </select>
+<%--            <label class="col-md-4 control-label" for="categoryId">Product Category</label>--%>
+<%--            <div class="col-md-4">--%>
+<%--                <input id="categoryId" name="" placeholder="Category Id"--%>
+<%--                       class="form-control input-md" required="" type="text">--%>
+<%--            </div>--%>
         </div>
 
         <!-- Button -->
@@ -94,5 +99,6 @@
 </form>
 <a href="/products">Back
 
+<c:url value="/products"/>
 </body>
 </html>

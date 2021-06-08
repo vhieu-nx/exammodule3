@@ -1,5 +1,6 @@
 package service;
 
+import model.Category;
 import model.Product;
 
 import java.sql.*;
@@ -153,5 +154,47 @@ public class ProductDAO implements IProductDAO {
             throwables.printStackTrace();
         }
         return checkUpdate;
+    }
+
+    @Override
+    public List<Category> findall() {
+        List<Category> categories = new ArrayList<>();
+        Connection connection =getConnection();
+        String sql = "select * from category";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("idcate");
+                String name = resultSet.getString("name");
+                Category category = new Category(id,name);
+                categories.add(category);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return categories;
+    }
+
+    @Override
+    public List<Category> findListById(int id_product) {
+        Connection connection =getConnection();
+        List<Category> categories = new ArrayList<>();
+        String sql = "select name from category join product p on category.idcate = p.idcate\n" +
+                "where idproduct = ?;";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id_product);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                Category category = new Category(name);
+                categories.add(category);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return categories;
     }
 }

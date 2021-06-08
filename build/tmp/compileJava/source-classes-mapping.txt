@@ -1,10 +1,16 @@
-service/IGeneraDAO.java
- service.IGeneraDAO
 model/Product.java
  model.Product
-service/IProductDAO.java
- service.IProductDAO
-controller/ProductServlet.java
- controller.ProductServlet
+service/IGeneraDAO.java
+ service.IGeneraDAO
+model/Category.java
+ model.Category
 service/ProductDAO.java
  service.ProductDAO
+service/IProductDAO.java
+ service.IProductDAO
+service/CategoryDAO.java
+ service.CategoryDAO
+service/ICategoryDao.java
+ service.ICategoryDao
+controller/ProductServlet.java
+ controller.ProductServlet

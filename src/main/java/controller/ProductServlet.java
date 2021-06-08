@@ -1,6 +1,9 @@
 package controller;
 
+import model.Category;
 import model.Product;
+import service.CategoryDAO;
+import service.ICategoryDao;
 import service.IProductDAO;
 import service.ProductDAO;
 
@@ -13,6 +16,7 @@ import java.util.List;
 @WebServlet(name = "ProductServlet", value = "/products")
 public class ProductServlet extends HttpServlet {
     private static IProductDAO productDAO = new ProductDAO();
+    private static ICategoryDao cateDAO = new CategoryDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -91,7 +95,13 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showAddForm(HttpServletRequest request, HttpServletResponse response) {
+        List<Category> categories = cateDAO.findall();
+        request.setAttribute("cate",categories);
+//        Category category = (Category) productDAO.findall();
+//        request.setAttribute("cate",category);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/add.jsp");
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -128,7 +138,6 @@ public class ProductServlet extends HttpServlet {
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Product product = new Product(id, name, price, quantity, color, description, categoryId);
         productDAO.update(product);
-        productDAO.insert(product);
         try {
             response.sendRedirect(request.getContextPath() + "/products");
         } catch (IOException e) {

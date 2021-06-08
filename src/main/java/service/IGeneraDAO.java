@@ -9,4 +9,5 @@ public interface IGeneraDAO<T> {
     List<T> selectAllProduct();
     boolean delete(int id);
     boolean update(T t);
+
 }
