@@ -126,6 +126,9 @@ public class ProductServlet extends HttpServlet {
             case "edit":
                 updateProduct(request, response);
                 break;
+            case "find":
+                searchByName(request, response);
+                break;
 
         }
     }

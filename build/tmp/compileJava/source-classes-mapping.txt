@@ -4,13 +4,13 @@ service/IGeneraDAO.java
  service.IGeneraDAO
 model/Category.java
  model.Category
-service/ProductDAO.java
- service.ProductDAO
+service/ICategoryDao.java
+ service.ICategoryDao
 service/IProductDAO.java
  service.IProductDAO
 service/CategoryDAO.java
  service.CategoryDAO
-service/ICategoryDao.java
- service.ICategoryDao
 controller/ProductServlet.java
  controller.ProductServlet
+service/ProductDAO.java
+ service.ProductDAO

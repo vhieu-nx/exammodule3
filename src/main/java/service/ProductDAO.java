@@ -17,7 +17,8 @@ public class ProductDAO implements IProductDAO {
     private String url = "jdbc:mysql://localhost:3306/examplemodule3";
     private String username = "root";
     private String password = "123456";
-    private Connection getConnection(){
+
+    private Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -30,6 +31,7 @@ public class ProductDAO implements IProductDAO {
         return connection;
 
     }
+
     @Override
     public void insert(Product product) {
         Connection connection = getConnection();
@@ -73,9 +75,10 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public List<Product> selectProductByName(String inputSearch) {
-        String search = "%" + inputSearch + "%";
-        List<Product> products = null;
         Connection connection = getConnection();
+
+        List<Product> products = new ArrayList<>();
+        String search = "%" + inputSearch + "%";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME);
             preparedStatement.setString(1, search);
@@ -88,8 +91,8 @@ public class ProductDAO implements IProductDAO {
                 String color = rs.getString("color");
                 String description = rs.getString("description");
                 int category_id = rs.getInt("idcate");
-
-                products.add(new Product(id, name, price, quantity, color, description, category_id));
+                Product product = new Product(id, name, price, quantity, color, description, category_id);
+                products.add(product);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -159,15 +162,15 @@ public class ProductDAO implements IProductDAO {
     @Override
     public List<Category> findall() {
         List<Category> categories = new ArrayList<>();
-        Connection connection =getConnection();
+        Connection connection = getConnection();
         String sql = "select * from category";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("idcate");
                 String name = resultSet.getString("name");
-                Category category = new Category(id,name);
+                Category category = new Category(id, name);
                 categories.add(category);
             }
         } catch (SQLException throwables) {
@@ -178,7 +181,7 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public List<Category> findListById(int id_product) {
-        Connection connection =getConnection();
+        Connection connection = getConnection();
         List<Category> categories = new ArrayList<>();
         String sql = "select name from category join product p on category.idcate = p.idcate\n" +
                 "where idproduct = ?;";

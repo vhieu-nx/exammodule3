@@ -16,11 +16,12 @@
     <h2>
         <a href="/products?action=create">Add New Product</a>
     </h2>
-    <form class="form-inline my-2 my-lg-0" method="post" action="/products?action=find" style="">
-        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
 </center>
+<form class="form-inline my-2 my-lg-0" method="post" action="/products?action=find" style="">
+    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <div align="center">
     <table border="1" cellpadding="5">
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<c:forEach var="product" items="${product}">
+<c:forEach var="product" items="${listProduct}">
 <form class="form-inline my-2 my-lg-0" method="get">
     <input class="form-control mr-sm-2" type="text" name="search" value="${product.getName()}" aria-label="Search">
     <input class="btn btn-outline-success my-2 my-sm-0" type="submit">Search
