@@ -83,6 +83,8 @@ public class ProductServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productDAO.selectProductByID(id);
+        List<Category> categories = cateDAO.findall();
+        request.setAttribute("cate",categories);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/edit.jsp");
         request.setAttribute("product", product);
         try {

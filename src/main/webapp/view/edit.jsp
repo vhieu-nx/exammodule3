@@ -87,9 +87,14 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="categoryId">Product Category</label>
             <div class="col-md-4">
-                <input id="categoryId" name="categoryId" value="<c:out
-                                value='${product.getCategory_id()}'/>"
-                       class="form-control input-md" required="" type="text">
+                <select name="categoryId">
+                    <c:forEach items="${cate}" var="category">
+                        <option value="${category.id}" >${category.name}</option>
+                    </c:forEach>
+                </select>
+<%--                <input id="categoryId" name="categoryId" value="<c:out--%>
+<%--                                value='${product.getCategory_id()}'/>"--%>
+<%--                       class="form-control input-md" required="" type="text">--%>
             </div>
         </div>
 
