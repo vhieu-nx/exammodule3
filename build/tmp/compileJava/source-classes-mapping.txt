@@ -1,0 +1,10 @@
+service/IGeneraDAO.java
+ service.IGeneraDAO
+model/Product.java
+ model.Product
+service/IProductDAO.java
+ service.IProductDAO
+controller/ProductServlet.java
+ controller.ProductServlet
+service/ProductDAO.java
+ service.ProductDAO
